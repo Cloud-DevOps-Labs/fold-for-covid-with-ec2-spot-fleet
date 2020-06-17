@@ -9,7 +9,7 @@ export AWS_DEFAULT_REGION=eu-west-1
 aws cloudformation deploy \
     --template-file template.yaml \
     --stack-name fold-for-covid-spot-fleet \
-    --capabilities CAPABILITY_NAMED_IAM \
+    --capabilities CAPABILITY_IAM \
     --tags \
       project="fold-for-covid"
       

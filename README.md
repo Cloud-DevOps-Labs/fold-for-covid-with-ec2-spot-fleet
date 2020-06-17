@@ -7,17 +7,18 @@ A Cloudformation template to deploy a fleet of Spot Instances with Boinc install
 **DISCLAIMER**
 Deploying this template to an AWS account **involves economic** costs because of the resources it provides. Be careful about this and verify that you eliminate the resources deployed when you are done.
 
-### References
-
-* https://foldforcovid.io/
-* https://boinc.bakerlab.org/
-* https://tech.cccp.io/post/8_linux_boinc_install/
-* https://gist.github.com/Pelirrojo/b280b192b173e9249a0abbca74a9fda6
-
 ### Use command
 
 ```bash
   > ./deploy.sh     # Check the environment and deploy to AWS
 ```
+
+### References
+
+* https://foldforcovid.io/
+* https://boinc.bakerlab.org/
+* https://github.com/adavidev/EthMiningCFN
+* https://tech.cccp.io/post/8_linux_boinc_install/
+* https://gist.github.com/Pelirrojo/b280b192b173e9249a0abbca74a9fda6
 
 Feel free to use, improve and remix this template.

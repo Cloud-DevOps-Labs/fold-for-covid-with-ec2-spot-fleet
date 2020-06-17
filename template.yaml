@@ -1,4 +1,4 @@
-# 
+# Based on https://github.com/adavidev/EthMiningCFN
 ---
 AWSTemplateFormatVersion: '2010-09-09'
 Description: AWS CloudFormation Template to launch a Spot Fleet of Boin instances
@@ -21,8 +21,20 @@ Parameters:
 
   AmazonLinuxAmiID:
     Type: String
-    Default: 'ami-047bb4163c506cd98'
-    Description: Amazon Linux AMI ID obtained from https://aws.amazon.com/amazon-linux-ami/
+    Default: ami-0ea3405d2d2522162
+    Description: Amazon Linux AMI ID for eu-west-1
+
+  KeyPairName:
+    Type: String
+    Description: Name of the KeyPair
+
+  VPCId:
+    Type: String
+    Description: Id of the VPC
+
+  SubnetsIDList:
+    Type: String
+    Description: String comma separated list of subnets Ids
 
   ProjectUrl:
     Type: String
@@ -75,22 +87,33 @@ Resources:
     Type: AWS::EC2::SecurityGroup
     Properties:
       GroupDescription: Enable SSH access via port 22
+      VpcId: !Ref VPCId
       SecurityGroupIngress:
         - IpProtocol: tcp
           FromPort: '22'
           ToPort: '22'
           CidrIp: '0.0.0.0/0'
   
-  EtherSpotFleet:
+  BoincSpotFleet:
     Type: AWS::EC2::SpotFleet
     Properties:
       SpotFleetRequestConfigData:
         IamFleetRole: !GetAtt 'SpotFleetRole.Arn'
         SpotPrice: !Ref 'SpotPrice'
-        AllocationStrategy: lowestPrice
+        AllocationStrategy: capacityOptimized
+        ExcessCapacityTerminationPolicy: noTermination
+        ReplaceUnhealthyInstances: true
+        TerminateInstancesWithExpiration: true
+        InstanceInterruptionBehavior: terminate
+        Type: maintain
         TargetCapacity: !Ref 'FleetSize'
         LaunchSpecifications:
-          - InstanceType: m4.small
+          - InstanceType: m1.large
+            KeyName: !Ref KeyPairName
+            SubnetId: !Ref SubnetsIDList
+            InstanceNetworkInterfaceSpecification:
+              AssociatePublicIpAddress: True
+              DeleteOnTermination: True
             ImageId: !Ref AmazonLinuxAmiID
             SecurityGroups:
               - GroupId: !GetAtt 'InstanceSecurityGroup.GroupId'
@@ -99,6 +122,8 @@ Resources:
                 - ''
                 - - "#!/bin/bash -xe\n"
                   - yum update -y
+                  - yum install -y https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm
+                  - start amazon-ssm-agent
                   - yum install -y epel-release boinc-client boinc-manager
                   - yum install -y compat-libstdc++-296.i686 compat-libstdc++-33.i686 compat-libstdc++-33.x86_64 zlib.i686 libstdc++.i686
                   - cd /var/lib/boinc

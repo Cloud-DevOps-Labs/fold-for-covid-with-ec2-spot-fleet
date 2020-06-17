@@ -9,8 +9,10 @@ Deploying this template to an AWS account **involves economic** costs because of
 
 ### References
 
+* https://foldforcovid.io/
 * https://boinc.bakerlab.org/
 * https://tech.cccp.io/post/8_linux_boinc_install/
+* https://gist.github.com/Pelirrojo/b280b192b173e9249a0abbca74a9fda6
 
 ### Use command
 

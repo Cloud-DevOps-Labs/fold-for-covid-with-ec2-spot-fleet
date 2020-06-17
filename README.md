@@ -15,8 +15,7 @@ Deploying this template to an AWS account **involves economic** costs because of
 ### Use command
 
 ```bash
-  > ./setup.sh      # Check the environment
-  > ./deploy.sh     # Deploy at AWS
+  > ./deploy.sh     # Check the environment and deploy to AWS
 ```
 
 Feel free to use, improve and remix this template.

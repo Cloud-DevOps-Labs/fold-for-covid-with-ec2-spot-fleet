@@ -30,7 +30,7 @@ Parameters:
     Description: The url project that you want to contribute
 
   AccountKey:
-    Noecho: true
+    NoEcho: true
     Type: String
     Default: '2160444_c34a50dad95871dfd5043c2c0fbab546'
     Description: Your  weak or normal account key

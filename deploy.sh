@@ -7,17 +7,11 @@ export AWS_PAGER=""
 export AWS_DEFAULT_REGION=eu-west-1
 
 aws cloudformation deploy \
-    --template-file ${DIR}/packaged.yaml \
-    --stack-name ${STACK_NAME} \
-    --parameter-overrides \
-        RawBucketArn=${RAW_BUCKET} \
-        ReportsBucketArn=${REPORTS_BUCKET} \
-        AthenaWorkgroup=${ATHENA_WORKGROUP} \
+    --template-file template.yaml \
+    --stack-name fold-for-covid-spot-fleet \
     --capabilities CAPABILITY_NAMED_IAM \
     --tags \
-      Env=${ENV} \
-      Layer=${LAYER} \
-      Functional=${FUNCTIONAL}
+      project="fold-for-covid"
       
 if [ $ -ne 0 ]; then
     echo "KO"

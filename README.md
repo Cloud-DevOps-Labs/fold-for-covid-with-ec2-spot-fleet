@@ -1,4 +1,7 @@
 ![https://aws.amazon.com/ec2/spot/](https://img.shields.io/badge/Amazon-EC2%20Spot%20Instances-orange.svg)
+[![stable](http://badges.github.io/stability-badges/dist/stable.svg)](http://github.com/badges/stability-badges)
+
+** UNDER DEVELOPMENT :) **
 
 # Fold for covid with EC2 Spot Fleet
 

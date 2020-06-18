@@ -5,16 +5,24 @@
 
 # Fold for covid with EC2 Spot Fleet
 
-A Cloudformation template to deploy a fleet of Spot Instances with Boinc installed and running. You can register at [Boinc/rosetta](https://boinc.bakerlab.org/rosetta/create_account_form.php) to obtain your own account key and track your contribution.
+A Cloudformation/IaC template to deploy a fleet of Spot Instances with Boinc installed and running. You can register at [Boinc/rosetta](https://boinc.bakerlab.org/rosetta/create_account_form.php) to obtain your own account key and track your contribution.
 
-**DISCLAIMER**
+## **DISCLAIMER**
+
 Deploying this template to an AWS account **involves economic** costs because of the resources it provides. Be careful about this and verify that you eliminate the resources deployed when you are done.
 
-### Use command
+### Use 
+
+By command
 
 ```bash
   > ./deploy.sh     # Check the environment and deploy to AWS
 ```
+
+By Console/Web GUI:
+
+[Console](https://eu-west-1.console.aws.amazon.com/cloudformation/home)
+Create a New Stack => Give values to the parameters => Check Capabilities IAM Resources
 
 ### TODOs
 
@@ -23,8 +31,7 @@ Deploying this template to an AWS account **involves economic** costs because of
 - [ ] Ensure that the template works
 - [ ] Check right boinc registeringa
 - [ ] Select more instance type options to the fleet
-- [ ] Add a mapping section with the Ids
-- [ ] Improve the parameter management to reduce the complexity (networking)
+- [ ] Add a mapping section with the Ids (multiregion)
 - [ ] Improve the parameter management to reduce the complexity (networking)
 
 ### References
